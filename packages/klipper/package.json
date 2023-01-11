@@ -14,6 +14,33 @@
 		"types": "git",
 		"url": "https://github.com/dannymcgee/vscode-klipper"
 	},
-	"contributes": {},
-	"activationEvents": []
+	"contributes": {
+		"languages": [
+			{
+				"id": "klipper-cfg",
+				"aliases": ["Klipper Config"],
+				"extensions": [".cfg"]
+			},
+			{
+				"id": "klipper-gcode",
+				"aliases": ["Klipper-Flavored GCode"],
+				"extensions": [".gcode"]
+			}
+		],
+		"grammars": [
+			{
+				"language": "klipper-cfg",
+				"scopeName": "source.klipper-cfg",
+				"path": "./klipper-cfg.tmLanguage.json"
+			},
+			{
+				"language": "klipper-gcode",
+				"scopeName": "source.klipper-gcode",
+				"path": "./klipper-gcode.tmLanguage.json"
+			}
+		]
+	},
+	"activationEvents": [
+		"onLanguage:klipper-cfg"
+	]
 }

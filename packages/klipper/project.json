@@ -7,18 +7,23 @@
 		"build": {
 			"executor": "@vscode-devkit/nx:build",
 			"options": {
-				"additionalTargets": [],
+				"additionalTargets": ["klipper-cfg:build", "klipper-gcode:build"],
 				"assets": [
+					"LICENSE",
 					"package.json",
 					"README.md"
 				],
 				"entryPoint": "src/index.ts",
 				"outputPath": "dist/packages/vscode-klipper",
 				"outputFile": "main.js",
-				"package": false,
-				"install": false
+				"package": true,
+				"install": true
 			}
 		}
 	},
+	"implicitDependencies": [
+		"klipper-cfg",
+		"klipper-gcode"
+	],
 	"tags": []
 }
