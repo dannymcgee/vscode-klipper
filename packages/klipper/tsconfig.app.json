@@ -1,0 +1,14 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/klipper",
+		"declaration": true,
+		"types": [],
+		"target": "es2015",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"lib": ["es2017"]
+	},
+	"include": ["**/*.ts"],
+	"exclude": ["**/*.spec.ts"]
+}

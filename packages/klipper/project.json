@@ -1,0 +1,12 @@
+{
+	"name": "klipper",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "packages/klipper/src",
+	"targets": {
+		"build": {
+			"executor": "@vscode-devkit/nx:build"
+		}
+	},
+	"tags": []
+}

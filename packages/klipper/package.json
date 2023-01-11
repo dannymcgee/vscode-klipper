@@ -1,0 +1,19 @@
+{
+	"name": "klipper",
+	"displayName": "Klipper",
+	"description": "Rich language support for Klipper configuration files and Klipper-flavored GCode",
+	"version": "0.1.0",
+	"main": "main.js",
+	"author": "Danny McGee <dannymcgee@gmail.com>",
+	"publisher": "dannymcgee",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"repository": {
+		"types": "git",
+		"url": "https://github.com/dannymcgee/vscode-klipper"
+	},
+	"contributes": {},
+	"activationEvents": []
+}
