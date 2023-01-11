@@ -5,7 +5,19 @@
 	"sourceRoot": "packages/klipper/src",
 	"targets": {
 		"build": {
-			"executor": "@vscode-devkit/nx:build"
+			"executor": "@vscode-devkit/nx:build",
+			"options": {
+				"additionalTargets": [],
+				"assets": [
+					"package.json",
+					"README.md"
+				],
+				"entryPoint": "src/index.ts",
+				"outputPath": "dist/packages/vscode-klipper",
+				"outputFile": "main.js",
+				"package": false,
+				"install": false
+			}
 		}
 	},
 	"tags": []
