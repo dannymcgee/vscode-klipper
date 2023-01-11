@@ -37,6 +37,19 @@ export const identifier: TMGrammarScope = {
 			}],
 		},
 		{
+			name: "meta.pin-id.klipper-cfg",
+			// TODO: Does this cover everything?
+			match: regex`/(?:(${IDENT})(:))?([!^\b])?((?:[A-Z]{1,2}|gpio)[0-9]+)\b/`,
+			captures: {
+				1: { name: "entity.name.class.klipper-cfg" },
+				2: { name: "punctuation.accessor.klipper-cfg" },
+				3: { name: "keyword.operator.klipper-cfg" },
+				// TODO: I do like this color for global statics, but this isn't
+				// really an accurately named scope
+				4: { name: "variable.other.enummember.klipper-cfg" },
+			},
+		},
+		{
 			name: "meta.property-block.entry.klipper-cfg",
 			begin: regex`/^(${IDENT})(:)/`,
 			beginCaptures: {
@@ -50,17 +63,6 @@ export const identifier: TMGrammarScope = {
 				{ include: "#identifier" },
 				{ include: "#punctuation" },
 			]
-		},
-		{
-			name: "meta.pin-id.klipper-cfg",
-			// TODO: Does this cover everything?
-			match: /([!^\b])?((?:[A-Z]{1,2}|gpio)[0-9]+)\b/,
-			captures: {
-				1: { name: "keyword.operator.klipper-cfg" },
-				// TODO: I do like this color for global statics, but this isn't
-				// really an accurately named scope
-				2: { name: "variable.other.enummember.klipper-cfg" },
-			},
 		},
 		{
 			name: "variable.other.klipper-cfg",
