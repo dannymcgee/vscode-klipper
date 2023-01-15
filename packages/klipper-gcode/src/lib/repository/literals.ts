@@ -12,3 +12,12 @@ export const stringLiteral: TMGrammarScope = {
 		2: { name: "punctuation.definition.string.end.klipper-gcode" },
 	},
 };
+
+export const numericLiteral: TMGrammarScope = {
+	name: "constant.numeric.klipper-cfg",
+	match: /(-)?(?:[0-9]|(\.)[0-9])+/,
+	captures: {
+		1: { name: "keyword.operator.negative.klipper-cfg" },
+		2: { name: "meta.delimiter.decimal.period.klipper-cfg" },
+	},
+};

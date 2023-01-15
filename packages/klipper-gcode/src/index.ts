@@ -9,6 +9,7 @@ const grammar: TMGrammar = {
 		{ include: "#comment" },
 		{ include: "#template" },
 		{ include: "#command" },
+		{ include: "#macro" },
 	],
 	repository,
 };
