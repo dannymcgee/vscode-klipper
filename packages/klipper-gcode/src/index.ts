@@ -7,6 +7,7 @@ const grammar: TMGrammar = {
 	patterns: [
 		{ include: "#comment" },
 		{ include: "#stringLiteral" },
+		{ include: "#template" },
 		{ include: "#punctuation" },
 		{ include: "#identifier" },
 	],
