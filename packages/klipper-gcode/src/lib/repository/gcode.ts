@@ -10,6 +10,7 @@ export const command: TMGrammarScope = {
 	patterns: [
 		{ include: "#comment" },
 		{ include: "#parameter" },
+		{ include: "#template" },
 	],
 };
 
