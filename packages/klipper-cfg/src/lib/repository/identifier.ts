@@ -50,13 +50,26 @@ export const identifier: TMGrammarScope = {
 			},
 		},
 		{
+			name: "meta.embedded-gcode.klipper-cfg",
+			begin: /^(gcode)(:)/,
+			beginCaptures: {
+				1: { name: "variable.property.klipper-cfg" },
+				2: { name: "punctuation.separator.key-value.klipper-cfg" },
+			},
+			end: /(?=^\S)/,
+			contentName: "source.klipper-gcode",
+			patterns: [
+				{ include: "source.klipper-gcode" },
+			],
+		},
+		{
 			name: "meta.property-block.entry.klipper-cfg",
 			begin: regex`/^(${IDENT})(:)/`,
 			beginCaptures: {
 				1: { name: "variable.property.klipper-cfg" },
 				2: { name: "punctuation.separator.key-value.klipper-cfg" },
 			},
-			end: /(?=\n[^ \t])/,
+			end: /(?=^\S)/,
 			patterns: [
 				{ include: "#comment" },
 				{ include: "#literal" },
