@@ -8,6 +8,7 @@ const grammar: TMGrammar = {
 	patterns: [
 		{ include: "#comment" },
 		{ include: "#template" },
+		{ include: "#command" },
 	],
 	repository,
 };
