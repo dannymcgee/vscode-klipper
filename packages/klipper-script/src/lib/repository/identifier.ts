@@ -11,6 +11,12 @@ export const identifier: TMGrammarScope = {
 			},
 		},
 		{
+			match: regex`/(?<=\.)(${IDENT})/`,
+			captures: {
+				1: { name: "variable.other.property.klipper-script" },
+			},
+		},
+		{
 			match: regex`/\b(${IDENT})\b/`,
 			captures: {
 				1: { name: "variable.other.klipper-script" },
