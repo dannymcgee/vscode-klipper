@@ -1,0 +1,17 @@
+{
+	"name": "klipper-script",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "library",
+	"sourceRoot": "packages/klipper-script/src",
+	"targets": {
+		"build": {
+			"executor": "@vscode-devkit/nx:grammar",
+			"options": {
+				"name": "klipper-script",
+				"entryPoint": "packages/klipper-script/src/index.ts",
+				"outputPath": "dist/packages/vscode-klipper"
+			}
+		}
+	},
+	"tags": []
+}

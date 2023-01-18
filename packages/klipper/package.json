@@ -25,6 +25,10 @@
 				"id": "klipper-gcode",
 				"aliases": ["Klipper-Flavored GCode"],
 				"extensions": [".gcode"]
+			},
+			{
+				"id": "klipper-script",
+				"aliases": ["Klipper Jinja2 Template"]
 			}
 		],
 		"grammars": [
@@ -37,6 +41,11 @@
 				"language": "klipper-gcode",
 				"scopeName": "source.klipper-gcode",
 				"path": "./klipper-gcode.tmLanguage.json"
+			},
+			{
+				"language": "klipper-script",
+				"scopeName": "source.klipper-script",
+				"path": "./klipper-script.tmLanguage.json"
 			}
 		]
 	},

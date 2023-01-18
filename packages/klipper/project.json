@@ -7,7 +7,11 @@
 		"build": {
 			"executor": "@vscode-devkit/nx:build",
 			"options": {
-				"additionalTargets": ["klipper-cfg:build", "klipper-gcode:build"],
+				"additionalTargets": [
+					"klipper-cfg:build",
+					"klipper-gcode:build",
+					"klipper-script:build"
+				],
 				"assets": [
 					"LICENSE",
 					"package.json",
@@ -23,7 +27,8 @@
 	},
 	"implicitDependencies": [
 		"klipper-cfg",
-		"klipper-gcode"
+		"klipper-gcode",
+		"klipper-script"
 	],
 	"tags": []
 }
