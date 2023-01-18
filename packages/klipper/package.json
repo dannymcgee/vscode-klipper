@@ -7,6 +7,7 @@
 	"author": "Danny McGee <dannymcgee@gmail.com>",
 	"publisher": "dannymcgee",
 	"license": "MIT",
+	"icon": "assets/icon.png",
 	"engines": {
 		"vscode": "^1.61.0"
 	},

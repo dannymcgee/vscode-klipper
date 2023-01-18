@@ -15,7 +15,12 @@
 				"assets": [
 					"LICENSE",
 					"package.json",
-					"README.md"
+					"README.md",
+					{
+						"input": "src/assets/",
+						"output": "assets/",
+						"glob": "**"
+					}
 				],
 				"entryPoint": "src/index.ts",
 				"outputPath": "dist/packages/vscode-klipper",
