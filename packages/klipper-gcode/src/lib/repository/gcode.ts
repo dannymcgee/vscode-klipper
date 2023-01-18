@@ -15,10 +15,23 @@ export const command: TMGrammarScope = {
 };
 
 export const parameter: TMGrammarScope = {
-	name: "constant.numeric.$1.klipper-gcode",
-	match: /([SPXYZUVWIJDHFRQEN])([-.0-9]+)/,
-	captures: {
-		1: { name: "meta.parameter-specifier.klipper-gcode" },
-		2: { name: "meta.parameter-value.klipper-gcode" },
-	},
+	patterns: [
+		{
+			name: "constant.numeric.$1.klipper-gcode",
+			match: /([SPXYZUVWIJDHFRQEN])([-.0-9]+)/,
+			captures: {
+				1: { name: "meta.parameter-specifier.klipper-gcode" },
+				2: { name: "meta.parameter-value.klipper-gcode" },
+			},
+		},
+		{
+			// Parameter with interpolation, e.g.:
+			// S{some_variable}
+			name: "constant.numeric.$1.klipper-gcode",
+			match: /[SPXYZUVWIJDHFRQEN](?=\{)/,
+			captures: {
+				0: { name: "meta.parameter-specifier.klipper-gcode" },
+			},
+		},
+	],
 };
