@@ -28,7 +28,7 @@ export const parameter: TMGrammarScope = {
 			// Parameter with interpolation, e.g.:
 			// S{some_variable}
 			name: "constant.numeric.$1.klipper-gcode",
-			match: /[SPXYZUVWIJDHFRQEN](?=\{)/,
+			match: /([SPXYZUVWIJDHFRQEN])(?=\{)/,
 			captures: {
 				0: { name: "meta.parameter-specifier.klipper-gcode" },
 			},

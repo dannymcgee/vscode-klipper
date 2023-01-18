@@ -29,5 +29,7 @@ export const macro: TMGrammarScope = {
 				},
 			],
 		},
+		{ include: "#comment" },
+		{ include: "#template" },
 	],
 };
