@@ -6,6 +6,8 @@ const grammar: TMGrammar = {
 	scopeName: "source.klipper-script",
 	patterns: [
 		{ include: "#stringLiteral" },
+		{ include: "#keyword" },
+		{ include: "#operator" },
 		{ include: "#punctuation" },
 		{ include: "#identifier" },
 	],
