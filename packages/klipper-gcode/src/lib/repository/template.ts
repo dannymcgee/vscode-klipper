@@ -12,7 +12,10 @@ export const template: TMGrammarScope = {
 			endCaptures: {
 				0: { name: "punctuation.definition.template-expression.end.klipper-gcode" },
 			},
-			patterns: [], // TODO
+			contentName: "source.klipper-script",
+			patterns: [
+				{ include: "source.klipper-script" },
+			],
 		},
 		{
 			name: "meta.jinja2.expression.klipper-gcode",
@@ -24,7 +27,10 @@ export const template: TMGrammarScope = {
 			endCaptures: {
 				0: { name: "punctuation.definition.template-expression.end.klipper-gcode" },
 			},
-			patterns: [], // TODO
+			contentName: "source.klipper-script",
+			patterns: [
+				{ include: "source.klipper-script" },
+			],
 		},
 	],
 };
