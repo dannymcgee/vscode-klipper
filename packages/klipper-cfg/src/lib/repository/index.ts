@@ -3,6 +3,7 @@ import { identifier } from "./identifier";
 import {
 	boolLiteral,
 	literal,
+	nullLiteral,
 	numericLiteral,
 	stringLiteral,
 } from "./literals";
@@ -13,6 +14,7 @@ export default {
 	identifier,
 	boolLiteral,
 	literal,
+	nullLiteral,
 	numericLiteral,
 	stringLiteral,
 	punctuation,

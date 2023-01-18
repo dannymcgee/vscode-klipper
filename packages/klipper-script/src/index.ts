@@ -7,8 +7,11 @@ const grammar: TMGrammar = {
 	patterns: [
 		{ include: "#stringLiteral" },
 		{ include: "#keyword" },
+		{ include: "#numericLiteral" },
 		{ include: "#operator" },
 		{ include: "#punctuation" },
+		{ include: "#boolLiteral" },
+		{ include: "#nullLiteral" },
 		{ include: "#identifier" },
 	],
 	repository,
