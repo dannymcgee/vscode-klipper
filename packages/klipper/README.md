@@ -20,9 +20,8 @@ open issues, feature requests, pull requests, or fork it and make it your own.
 - [x] Jinja2 template expressions
 
 ### Language Configuration
-- [ ] Base config syntax
-- [ ] Klipper-flavored GCode
-- [ ] Jinja2 template expressions
+- [x] Base config syntax
+- [x] Klipper-flavored GCode
 
 ### Programmatic Language Features
 - [ ] Document symbols
