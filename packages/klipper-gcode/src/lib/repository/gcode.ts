@@ -9,6 +9,7 @@ export const command: TMGrammarScope = {
 	end: /[\r\n]/,
 	patterns: [
 		{ include: "#comment" },
+		{ include: "#macroParameter" },
 		{ include: "#parameter" },
 		{ include: "#template" },
 	],

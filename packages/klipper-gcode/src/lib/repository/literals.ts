@@ -1,5 +1,10 @@
 import { TMGrammarScope } from "@vscode-devkit/grammar";
 
+export const boolLiteral: TMGrammarScope = {
+	name: "constant.language.boolean.klipper-gcode",
+	match: /\b[Tt]rue|[Ff]alse\b/,
+};
+
 export const stringLiteral: TMGrammarScope = {
 	name: "string.klipper-gcode",
 	begin: /"/,
