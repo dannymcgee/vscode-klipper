@@ -20,6 +20,11 @@
 						"input": "src/assets/",
 						"output": "assets/",
 						"glob": "**"
+					},
+					{
+						"input": ".",
+						"output": ".",
+						"glob": "*.config.json"
 					}
 				],
 				"entryPoint": "src/index.ts",

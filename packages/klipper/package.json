@@ -20,12 +20,14 @@
 			{
 				"id": "klipper-cfg",
 				"aliases": ["Klipper Config"],
-				"extensions": [".cfg"]
+				"extensions": [".cfg"],
+				"configuration": "./klipper-cfg.config.json"
 			},
 			{
 				"id": "klipper-gcode",
 				"aliases": ["Klipper-Flavored GCode"],
-				"extensions": [".gcode"]
+				"extensions": [".gcode"],
+				"configuration": "./klipper-gcode.config.json"
 			},
 			{
 				"id": "klipper-script",
