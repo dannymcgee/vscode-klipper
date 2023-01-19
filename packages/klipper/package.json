@@ -2,7 +2,7 @@
 	"name": "klipper",
 	"displayName": "Klipper",
 	"description": "Rich language support for Klipper configuration files and Klipper-flavored GCode",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"main": "main.js",
 	"author": "Danny McGee <dannymcgee@gmail.com>",
 	"publisher": "dannymcgee",
