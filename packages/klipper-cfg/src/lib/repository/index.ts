@@ -16,6 +16,6 @@ export default {
 	literal,
 	nullLiteral,
 	numericLiteral,
-	stringLiteral,
 	punctuation,
+	stringLiteral,
 };
