@@ -8,6 +8,7 @@ import {
 	stringLiteral,
 } from "./literals";
 import { punctuation } from "./punctuation";
+import { template } from "./template";
 
 export default {
 	comment,
@@ -18,4 +19,5 @@ export default {
 	numericLiteral,
 	stringLiteral,
 	punctuation,
+	template,
 };
