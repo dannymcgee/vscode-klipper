@@ -15,11 +15,23 @@ export const stringLiteral: TMGrammarScope = {
 	patterns: [
 		{
 			name: "string.klipper-cfg",
-			begin: /["']/,
+			begin: /"/,
 			beginCaptures: {
 				0: { name: "punctuation.definition.string.begin.klipper-cfg" },
 			},
-			end: /(?<!\\)(\1)|\\\\(\1)/,
+			end: /(?<!\\)(")|\\\\(")/,
+			endCaptures: {
+				1: { name: "punctuation.definition.string.end.klipper-cfg" },
+				2: { name: "punctuation.definition.string.end.klipper-cfg" },
+			},
+		},
+		{
+			name: "string.klipper-cfg",
+			begin: /'/,
+			beginCaptures: {
+				0: { name: "punctuation.definition.string.begin.klipper-cfg" },
+			},
+			end: /(?<!\\)(')|\\\\(')/,
 			endCaptures: {
 				1: { name: "punctuation.definition.string.end.klipper-cfg" },
 				2: { name: "punctuation.definition.string.end.klipper-cfg" },
