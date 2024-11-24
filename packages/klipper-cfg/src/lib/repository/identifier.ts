@@ -74,6 +74,7 @@ export const identifier: TMGrammarScope = {
 				{ include: "#comment" },
 				{ include: "#literal" },
 				{ include: "#identifier" },
+				{ include: "#template" },
 				{ include: "#punctuation" },
 			]
 		},
