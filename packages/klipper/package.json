@@ -53,6 +53,7 @@
 		]
 	},
 	"activationEvents": [
-		"onLanguage:klipper-cfg"
+		"onLanguage:klipper-cfg",
+		"onLanguage:klipper-gcode"
 	]
 }
