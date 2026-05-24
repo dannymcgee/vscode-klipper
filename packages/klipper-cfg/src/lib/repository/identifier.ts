@@ -63,6 +63,33 @@ export const identifier: TMGrammarScope = {
 			],
 		},
 		{
+			name: "meta.property-block.description.klipper-cfg",
+			begin: /^(description)(:)/,
+			beginCaptures: {
+				1: { name: "variable.property.klipper-cfg" },
+				2: { name: "punctuation.separator.key-value.klipper-cfg" },
+			},
+			end: /(?=^\S)/,
+			contentName: "string.unquoted.description.klipper-cfg",
+			patterns: [
+				{ include: "#comment" },
+			],
+		},
+		{
+			name: "meta.property-block.variable.klipper-cfg",
+			begin: regex`/^(variable_${IDENT})(:)/`,
+			beginCaptures: {
+				1: { name: "variable.property.klipper-cfg" },
+				2: { name: "punctuation.separator.key-value.klipper-cfg" },
+			},
+			end: /(?=^\S)/,
+			patterns: [
+				{ include: "#comment" },
+				{ include: "#literal" },
+				{ include: "#punctuation" },
+			],
+		},
+		{
 			name: "meta.property-block.entry.klipper-cfg",
 			begin: regex`/^(${IDENT})(:)/`,
 			beginCaptures: {

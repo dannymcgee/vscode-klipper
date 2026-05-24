@@ -2,7 +2,7 @@ import { TMGrammarScope } from "@vscode-devkit/grammar";
 
 export const boolLiteral: TMGrammarScope = {
 	name: "constant.language.boolean.klipper-script",
-	match: /\b[Tt]rue|[Ff]alse\b/,
+	match: /\b(?:[Tt]rue|[Ff]alse)\b/,
 };
 
 export const nullLiteral: TMGrammarScope = {

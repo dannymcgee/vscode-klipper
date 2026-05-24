@@ -1,9 +1,8 @@
-import { regex, TMGrammarScope } from "@vscode-devkit/grammar";
-import { IDENT } from "../common";
+import { TMGrammarScope } from "@vscode-devkit/grammar";
 
 export const boolLiteral: TMGrammarScope = {
 	name: "constant.language.boolean.klipper-cfg",
-	match: /\b[Tt]rue|[Ff]alse\b/,
+	match: /\b(?:[Tt]rue|[Ff]alse)\b/,
 };
 
 export const nullLiteral: TMGrammarScope = {
@@ -39,7 +38,7 @@ export const stringLiteral: TMGrammarScope = {
 		},
 		{
 			name: "string.path.klipper-cfg",
-			match: regex`/(\/${IDENT})+/`,
+			match: /\/[^\s#;]+/,
 		}
 	],
 };
