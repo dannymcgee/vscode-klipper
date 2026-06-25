@@ -2,6 +2,63 @@ import * as vscode from 'vscode';
 import { KlipperWorkspaceState, stripComments } from './klipper-state';
 import * as fs from 'fs/promises';
 
+export function isValidReference(
+	line: string,
+	startCol: number,
+	word: string,
+	type: 'gcode_macro' | 'delayed_gcode'
+): boolean {
+	const before = line.substring(0, startCol);
+	const after = line.substring(startCol + word.length);
+
+	// 1. Section Header Definition check
+	if (/^\s*\[\s*(gcode_macro|delayed_gcode)\s+$/i.test(before) && /^\s*\]/.test(after)) {
+		if (type === 'gcode_macro') {
+			return /^\s*\[\s*gcode_macro\s+$/i.test(before);
+		} else {
+			return /^\s*\[\s*delayed_gcode\s+$/i.test(before);
+		}
+	}
+	// Any other section header is not a valid reference
+	if (/^\s*\[\s*[^\]]+$/i.test(before) && /^\s*\]/.test(after)) {
+		return false;
+	}
+
+	// 2. Built-in macro-referencing commands
+	// ID=word (only for delayed_gcode, inside UPDATE_DELAYED_GCODE)
+	if (type === 'delayed_gcode') {
+		if (/UPDATE_DELAYED_GCODE\s+[^#;]*\bID\s*=\s*["']?$/i.test(before)) {
+			return true;
+		}
+	}
+
+	// MACRO=word (only for gcode_macro, inside SET_GCODE_VARIABLE)
+	if (type === 'gcode_macro') {
+		if (/SET_GCODE_VARIABLE\s+[^#;]*\bMACRO\s*=\s*["']?$/i.test(before)) {
+			return true;
+		}
+	}
+
+	// COMMAND=word (only for gcode_macro, inside TUNING_TOWER)
+	if (type === 'gcode_macro') {
+		if (/TUNING_TOWER\s+[^#;]*\bCOMMAND\s*=\s*["']?$/i.test(before)) {
+			return true;
+		}
+	}
+
+	// 3. Standalone G-code command calls
+	// Must not be followed by "=" (e.g. parameter definition)
+	if (/^\s*=/.test(after)) {
+		return false;
+	}
+	// Must not be preceded by "PARAM="
+	if (/\b[a-zA-Z0-9_]+\s*=\s*["']?$/i.test(before)) {
+		return false;
+	}
+
+	return true;
+}
+
 export class KlipperDefinitionProvider implements vscode.DefinitionProvider {
 	constructor(private state: KlipperWorkspaceState) {}
 
@@ -37,6 +94,7 @@ export class KlipperDefinitionProvider implements vscode.DefinitionProvider {
 
 export async function findWordReferences(
 	word: string,
+	type: 'gcode_macro' | 'delayed_gcode',
 	startUri: vscode.Uri,
 	state: KlipperWorkspaceState
 ): Promise<vscode.Location[]> {
@@ -68,6 +126,9 @@ export async function findWordReferences(
 
 			for (const match of stripped.matchAll(regex)) {
 				const startCol = match.index!;
+				if (!isValidReference(stripped, startCol, word, type)) {
+					continue;
+				}
 				const endCol = startCol + word.length;
 				locations.push(new vscode.Location(
 					uri,
@@ -94,19 +155,22 @@ export class KlipperReferenceProvider implements vscode.ReferenceProvider {
 
 		const word = document.getText(range);
 		const connected = this.state.getConnectedFiles(document.uri);
-		let isMacroOrDelayed = false;
+		let targetType: 'gcode_macro' | 'delayed_gcode' | undefined;
 
 		for (const fsPath of connected) {
 			const defs = this.state.definitions.get(fsPath);
-			if (defs && defs.some(def => def.name.toLowerCase() === word.toLowerCase())) {
-				isMacroOrDelayed = true;
-				break;
+			if (defs) {
+				const found = defs.find(def => def.name.toLowerCase() === word.toLowerCase());
+				if (found) {
+					targetType = found.type;
+					break;
+				}
 			}
 		}
 
-		if (!isMacroOrDelayed) return [];
+		if (!targetType) return [];
 
-		return await findWordReferences(word, document.uri, this.state);
+		return await findWordReferences(word, targetType, document.uri, this.state);
 	}
 }
 
@@ -150,7 +214,23 @@ export class KlipperRenameProvider implements vscode.RenameProvider {
 		if (!range) return null;
 
 		const word = document.getText(range);
-		const references = await findWordReferences(word, document.uri, this.state);
+		const connected = this.state.getConnectedFiles(document.uri);
+		let targetType: 'gcode_macro' | 'delayed_gcode' | undefined;
+
+		for (const fsPath of connected) {
+			const defs = this.state.definitions.get(fsPath);
+			if (defs) {
+				const found = defs.find(def => def.name.toLowerCase() === word.toLowerCase());
+				if (found) {
+					targetType = found.type;
+					break;
+				}
+			}
+		}
+
+		if (!targetType) return null;
+
+		const references = await findWordReferences(word, targetType, document.uri, this.state);
 		const edit = new vscode.WorkspaceEdit();
 
 		for (const ref of references) {
